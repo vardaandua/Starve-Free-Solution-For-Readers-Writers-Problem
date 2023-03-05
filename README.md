@@ -24,11 +24,11 @@ Hence the above presented idea is a starve free solution to the Readers Writer P
 
 From here on I present a pseudocode for the queue and semaphore required above :
 
-// Queue
-// we declare a new data type Node in the form of a struct
-// for pid(porcess id) : a datatype provided by C++ (uint32_t -> unsigned integere of 32 bits) is used.
-// std_err_value is an integer used to denote that the operation used on the queue was invalid and can be defined
-// by the user as follows.
+ Queue
+ We declare a new data type Node in the form of a struct
+ for pid(porcess id) : a datatype provided by C++ (uint32_t -> unsigned integere of 32 bits) is used.
+ std_err_value is an integer used to denote that the operation used on the queue was invalid and can be defined
+ by the user as follows.
 
 #define std_err_value  999999999
 Struct Node
