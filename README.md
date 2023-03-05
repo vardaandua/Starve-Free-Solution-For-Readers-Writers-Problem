@@ -7,10 +7,10 @@ The readers-writers problem is a famous synchronisation problem in the field of 
  2. Multiple writers cannot write at the same time.
  3. Multiple readers can read at the same time.
 
-The solutions presented in class :
+```The solutions presented in class :
 1 . prioritize readers
 2 . prioritize writers
-
+```
 But these solutions are not starve free.
 Hence a proposed solution for the above problem which is also starve free is described as follows :
 1. Use semaphores that work like a queue data structure (FIFO : first in first out)
