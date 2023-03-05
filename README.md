@@ -175,3 +175,9 @@ Part 3 : Writer Process
             }
         //Perform the Wrting operation , Critical section
         in->signal()
+        
+        1. Writer process waits on "in" and then "out" semaphores.
+        2. Then it checks if any reader is still reading if there are none then it releases "out" and starts writing.
+        3. If readers are still reading the writer releases "out" but starts waiting on "writer",also the waiting
+           to 1. Once write->signal() is triggered, waiting is set to 0 and goes on to execute its critical section.
+```
