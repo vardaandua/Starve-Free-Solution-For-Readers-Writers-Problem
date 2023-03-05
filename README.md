@@ -92,3 +92,73 @@ struct Semaphore
     }
 }
 ```
+
+ ```
+ The solution pseudocode in three parts :
+ ```
+
+ ```
+ Part 1: These are global variables
+ ```
+    Semaphore* in, out, write 
+    in->sem = 1
+    out->sem = 1 
+    write->sem = 0 
+
+    int in_readers = 0 // readers that have started reading
+    int out_readers = 0 // #readers that have completed reading 
+    boolean wait_write = 0 // true if a writer is waiting 
+
+    semaphores in , out , write :
+    in: manages the queue of all incoming processes, helps to use in_readers.
+    out: helps using out_readers
+    write: contains at most one process at any time, a writer which is waiting for readers to finish .
+         
+    in_readers and out_readers variables are maintained to not allow writers to access data unless all readers
+    have finished their reading.
+    The wait_write is maintained to not allow more readers to start reading while a writer is waiting which came
+    before them.
+
+ 
+```
+Part 2 : Reader process
+```
+
+       // it is assumed  that this process will be written in the form of a method to which the pid will be a param
+        in->wait(pid) // Call wait 
+        in_readers++ // increment in_readers as the process starts reading
+        in->signal()         
+        // Critical section : perform the read operation
+        out->wait(pid) // wait on the out semaphore 
+        out_readers++             // increment out_readers after reading is complete
+        if(in_readers == out_readers && wait_write) {   // if writer is waiting and the last reader has finished
+            write->signal()                   
+            }                           // then signal write semaphore
+        out->signal() 
+
+         Here all variables reffered with "" re semapohores 
+        1. A Reader process on arrival waits on "in", then once woken up it changes in_readers, releases 
+        "in" and enters the critical section, i.e. starts reading.
+        2. On completion of its job, it waits on the "out" and when woken up it updates out_readers. 
+        3. At this point, it checks if in_readers and out_readers are equal && wait_write is 1. If both the 
+        conditions are satisfied, it means entire set of readers have finished their job and now the waiting writer 
+        may enter,henec it does "write"->signal().
+        After which "out" is released.
+
+```
+Part 3 : Writer Process
+```
+
+    // it is assumed  that this process will be written in the form of a method to which the pid will be a param
+        in->wait(pid) //waiting on in
+        out->wait(pid) //waiting on out
+        if(in_readers == out_readers) {   // if no processes are currently reading enter the critical section
+            out->signal()  //signalling the out semaphore
+        } else {                  // wait for readers to finish
+            wait_write = 1       // writer has started waiting for the readers inside the critical section to finish
+            out->signal()         //out semaphore released
+            writer->wait()        // wait on writer semaphore
+            wait_write = 0         // when no more writers waiting
+            }
+        //Perform the Wrting operation , Critical section
+        in->signal()
