@@ -6,8 +6,8 @@ The readers-writers problem is a famous synchronisation problem in the field of 
  1. reading and writing cannot occur at the same time.
  2. Multiple writers cannot write at the same time.
  3. Multiple readers can read at the same time.
-
-```The solutions presented in class :
+```
+The solutions presented in class :
 1 . prioritize readers
 2 . prioritize writers
 ```
