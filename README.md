@@ -216,7 +216,7 @@ Part 3 : Writer Process
            to 1. Once write->signal() is triggered, waiting is set to 0 and goes on to execute its critical section.
            
         4. The "in" is not signalled earlier but at the last because if it is signalled and next process arriving is a
-        writer and the first process was is critical section then the second process will also eneter the critical section
+        writer and the first process was is critical section then the second process will also enter the critical section
         and both processes will write simulataneously hence destroying the whole notion of two writers not writing
         simultaneously , also if the next process arrived was a reader then it will also enter the critical section 
         hence releasing the "in" at the end is extremely curcial.
