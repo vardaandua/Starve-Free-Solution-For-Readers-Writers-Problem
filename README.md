@@ -1,4 +1,4 @@
-# Starve-Free-Readers-Writers-Problem
+# Starve-Free-Solution-For-Readers-Writers-Problem
 
  The Readers - Writers problem is a famous synchronisation problem in the field of operating systems.
  The problem has objects of two kinds readers and writers working on the same shared data.
