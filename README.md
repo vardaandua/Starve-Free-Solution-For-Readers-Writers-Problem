@@ -198,7 +198,7 @@ Part 3 : Writer Process
             
             out->signal()         //out semaphore released
             
-            writer->wait()        // wait on writer semaphore
+            write->wait()        // wait on writer semaphore
             
             wait_write = 0         // when no more writers waiting
         
