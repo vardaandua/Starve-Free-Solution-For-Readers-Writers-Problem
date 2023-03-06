@@ -181,3 +181,7 @@ Part 3 : Writer Process
         3. If readers are still reading the writer releases "out" but starts waiting on "writer",also the waiting
            to 1. Once write->signal() is triggered, waiting is set to 0 and goes on to execute its critical section.
 ```
+
+**References**
+1. https://arxiv.org/abs/1309.4507
+2. https://www.geeksforgeeks.org/queue-linked-list-implementation/amp/
